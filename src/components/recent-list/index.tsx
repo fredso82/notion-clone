@@ -1,4 +1,7 @@
-import { View } from "react-native";
+import { FlatList, View, Text } from "react-native";
+import { s } from "./styles";
+import { Recent } from "../recent";
+
 type Props = {
     data: {
         id: string
@@ -9,6 +12,15 @@ type Props = {
 
 export function RecentList({ data }: Props) {
     return (
-        <View></View>
+        <View style={s.container}>
+            <Text style={s.title}>Recentes</Text>
+            <FlatList
+                data={data}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => <Recent data={item} />}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={s.content} />
+        </View>
     )
 }
